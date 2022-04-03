@@ -29,7 +29,7 @@ const actions = {
         poster: IMG_PATH + movie.poster_path,
         ratings: movie.vote_average,
         overview: movie.overview,
-        backdrop: movie.img_path + movie.backdrop_path,
+        backdrop: IMG_PATH + movie.backdrop_path,
       };
     });
     commit("ADD_MOVIES_MUTATION", movies);
