@@ -8,35 +8,39 @@
       </div>
       <p class="text-white-50 ps-3">This week's top TV series and movies</p>
       <div class="row gx-3">
-        <div v-if="loading">
-          <Spinner />
+        <div v-if="loading" class="d-flex p-4">
+          <Spinner class="mx-auto" />
         </div>
-        <div
-          class="col-lg-3 col-md-6 col-sm-12 rounded"
-          v-for="(movie, index) in MOVIES_LIST"
-          :key="index"
-        >
-          <router-link to="/overview" @click="onClick(index)">
-            <div class="my-2 box relative">
-              <img
-                :src="movie.poster"
-                :alt="movie.title"
-                class="absolute w-100 h-auto rounded-top"
-              />
-              <div class="p-3 d-flex absolute">
-                <h1 class="fs-5 fw-bold">{{ movie.title }}</h1>
-                <p class="ms-auto">{{ movie.ratings }}/10</p>
+
+        <template v-else>
+          <div
+            class="col-lg-3 col-md-6 col-sm-12 rounded"
+            v-for="movie in MOVIES_LIST"
+            :key="movie.id"
+          >
+            <router-link :to="`/overview/${movie.id}`">
+              <div class="my-2 box relative">
+                <img
+                  :src="movie.poster"
+                  :alt="movie.title"
+                  height="603"
+                  width="402"
+                />
+                <div class="p-3 d-flex absolute">
+                  <h1 class="fs-5 fw-bold">{{ movie.title }}</h1>
+                  <p class="ms-auto">{{ movie.ratings }}/10</p>
+                </div>
+                <div class="p-2">
+                  <button
+                    class="btn btn-outline-warning w-100 my-3 rounded-pill p-2"
+                  >
+                    Trailer
+                  </button>
+                </div>
               </div>
-              <div class="p-2">
-                <button
-                  class="btn btn-outline-warning w-100 my-3 rounded-pill p-2"
-                >
-                  Trailer
-                </button>
-              </div>
-            </div>
-          </router-link>
-        </div>
+            </router-link>
+          </div>
+        </template>
       </div>
     </section>
   </main>
@@ -67,7 +71,7 @@ export default {
     async onLoad() {
       try {
         this.loading = true;
-        this.FETCH_MOVIES();
+        await this.FETCH_MOVIES();
       } catch (error) {
         console.log(error);
       } finally {
