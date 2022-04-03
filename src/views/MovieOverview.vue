@@ -1,12 +1,19 @@
 <template>
   <HeaderView />
-  <div class="myContainer" v-bind:style="{ backgroundImage: 'url(' + overviews.backdrop + ')' }">
+  <div
+    class="myContainer"
+    v-bind:style="{ backgroundImage: 'url(' + MOVIE_DETAILS.backdrop + ')' }"
+  >
     <div class="container-fluid">
-      <div class="row ">
+      <div class="row">
         <div class="col-lg-7 col-md-12 col-sm-12 box p-5">
-         <h1 class="p-3 fw-bolder text-uppercase text-lg-start text-md-center text-sm-center">{{overviews.title}}</h1>
-         
-         <p class="p-3 lh-base">{{overviews.overview}}</p>
+          <h1
+            class="p-3 fw-bolder text-uppercase text-lg-start text-md-center text-sm-center"
+          >
+            {{ MOVIE_DETAILS.title }}
+          </h1>
+
+          <p class="p-3 lh-base">{{ MOVIE_DETAILS.overview }}</p>
         </div>
       </div>
     </div>
@@ -18,39 +25,34 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      title: " ",
+      title: "",
     };
   },
   components: {
     HeaderView,
   },
-     computed: {
-      ...mapGetters("movies", ["theMovies", "myOverview"]),
-     overviews(){
-       return this.myOverview
-     }
-    },
-  
+  computed: {
+    ...mapGetters("movies", ["MOVIES_LIST", "MOVIE_DETAILS"]),
+  },
 };
 </script>
 <style scoped>
 .myContainer {
- background-size: 100%;
+  background-size: 100%;
   min-height: 650px;
   background-repeat: no-repeat;
   background-position: top bottom;
 }
-.box{
+.box {
   background-color: rgba(0, 0, 0, 0.542);
-  box-shadow: 0.5px 5px 20px  rgba(0, 0, 0, 0.994);
+  box-shadow: 0.5px 5px 20px rgba(0, 0, 0, 0.994);
   border: none;
 }
-h1{
+h1 {
   font-size: 2.445rem;
-  letter-spacing: .5rem;
+  letter-spacing: 0.5rem;
 }
-p{
+p {
   font-size: 20px;
 }
-
 </style>
