@@ -1,6 +1,6 @@
 # movie time
 
-This template should help get you started developing with Vue 3 in Vite.
+This Site allows you to search and view latest and trending movies.
 
 ## Recommended IDE Setup
 
